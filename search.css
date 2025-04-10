@@ -145,6 +145,11 @@ body {
   color: #4d5156;
 }
 
+.search-result .title:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .news-section {
   display: flex;
   gap: 10px;
@@ -173,6 +178,11 @@ body {
   text-decoration: none;
   display: block;
   margin-bottom: 4px;
+}
+
+.news-title:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .news-time {
