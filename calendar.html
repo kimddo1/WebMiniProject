@@ -28,13 +28,13 @@
         <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
             <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1"
                 href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
-            <a href="#" class="w3-bar-item w3-button w3-theme-l1">Logo</a>
-            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">About</a>
-            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Values</a>
-            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">News</a>
-            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Contact</a>
-            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Clients</a>
-            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Partners</a>
+            <a href="#" class="w3-bar-item w3-button w3-theme-l1">kogle</a>
+            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">설정</a>
+            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">검색</a>
+            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">지원</a>
+            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">더보기</a>
+            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">주소록</a>
+            <!-- <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Partners</a> -->
         </div>
     </div>
 
@@ -52,7 +52,7 @@
                 <i class="fa fa-search"></i>
             </button> -->
             <input type="text" name="userSearch" id="userSearch" placeholder="사용자 검색" size="18">
-            <button class="w3-button w3-theme w3-right">
+            <button id="searchBtn" class="w3-button w3-theme w3-right">
                 <i class="fa fa-search"></i>
             </button>
 
@@ -68,7 +68,7 @@
         </a>
 
         <div id="myCalendarOptions" style="display:none; padding-left: 20px; padding-bottom: 10px;">
-            <label><input type="checkbox" style="padding-left: 20px;" id="allCheck" /><b>All</b></label><br>
+            <label><input type="checkbox" checked style="padding-left: 20px;" id="allCheck" /><b>All</b></label><br>
             <label><input type="checkbox" checked class="subCheck" id="check1">생일</label><br>
             <label><input type="checkbox" checked class="subCheck" id="check2">업무</label><br>
             <label><input type="checkbox" checked class="subCheck" id="check3">일정</label><br>
@@ -103,6 +103,33 @@
 
         <div class="miniCalendar" id="datepicker"></div>
 
+
+        <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Recipient:</label>
+                                <input type="text" class="form-control" id="recipient-name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="message-text" class="col-form-label">Message:</label>
+                                <textarea class="form-control" id="message-text"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Send message</button>
+                    </div>
+                </div>
+            </div>
+        </div> -->
 
     </nav>
 

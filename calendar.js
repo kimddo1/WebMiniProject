@@ -27,6 +27,11 @@ $(function () {
     });
 });
 
+$(function(){
+    $('#searchBtn').on('click', function(){
+        alert('사용자를 찾을 수 없습니다.');
+    });
+})
 
 $(function () {
     $("#datepicker").datepicker({
@@ -48,11 +53,10 @@ $(function () {
 });
 
 
-//생일, 업무, 일정체크박스
+//전체, 생일, 업무, 일정체크박스
 
-//처음 한번만 적용됨
 window.onload = function () {
-    const allCheckBox = document.querySelector('.subCheck');
+    const allCheckBox = document.querySelector('#allCheck');
     const birthdayBox = document.querySelector('#check1');
     const taskBox = document.querySelector('#check2');
     const scheduleBox = document.querySelector('#check3');
@@ -60,6 +64,41 @@ window.onload = function () {
     const event2 = document.querySelectorAll('.event2');
     const event3 = document.querySelectorAll('.event3');
 
+    //전체
+    allCheckBox.addEventListener('change', function(){
+        event1.forEach(function (el) {
+            if (el.style.display == this.checked) { 
+                el.style.display = 'block';
+            } else {
+                el.style.display = 'none';
+            }
+            event1.forEach(function (el) {
+                el.style.display = birthdayBox.checked ? 'block' : 'none';
+            })
+        });
+        event2.forEach(function (el) {
+            if (el.style.display == this.checked) {
+                el.style.display = 'block';
+            } else {
+                el.style.display = 'none';
+            }
+            event2.forEach(function (el) {
+                el.style.display = taskBox.checked ? 'block' : 'none';
+            })
+        });
+        event3.forEach(function (el) {
+            if (el.style.display == this.checked) {
+                el.style.display = 'block';
+            } else {
+                el.style.display = 'none';
+            }
+            event3.forEach(function (el) {
+                el.style.display = scheduleBox.checked ? 'block' : 'none';
+            })
+        });
+
+    })
+    //생일
     birthdayBox.addEventListener('change', function () {
         event1.forEach(function (el) {
             if (el.style.display == this.checked) { //this : birthdayBox
@@ -73,6 +112,7 @@ window.onload = function () {
             })
         });
     })
+    //업무
     taskBox.addEventListener('change', function () {
         event2.forEach(function (el) {
             if (el.style.display == this.checked) {
@@ -85,6 +125,7 @@ window.onload = function () {
             })
         });
     })
+    //일정
     scheduleBox.addEventListener('change', function () {
         event3.forEach(function (el) {
             if (el.style.display == this.checked) {
