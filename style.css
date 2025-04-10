@@ -1,0 +1,161 @@
+/* ========== GLOBAL ========== */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 40px;
+  background-color: #f8f9fb;
+  color: #333;
+}
+
+h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+/* ========== NAVIGATION TABS ========== */
+nav {
+  margin-bottom: 25px;
+}
+
+button {
+  padding: 10px 14px;
+  margin-top: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+  background-color: #1976d2;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #1565c0;
+}
+
+button.tab.active {
+  background-color: #1976d2;
+  color: #fff;
+  font-weight: bold;
+  border-color: #1976d2;
+}
+
+/* ========== TAB CONTENT ========== */
+.tab-content {
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ========== TABLE STYLES ========== */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+  font-size: 14px;
+}
+
+thead {
+  background-color: #f1f1f1;
+  font-weight: bold;
+}
+
+tbody tr:hover {
+  background-color: #f5faff;
+}
+
+/* ========== FILTER SECTION ========== */
+.filter-table,
+.file-table {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  background-color: #ffffff;
+  border-radius: 6px;
+}
+
+input[type="text"],
+select {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* ========== FILE LISTING TABLE ========== */
+.file-list-table th {
+  background-color: #e0e0e0;
+}
+
+.file-row {
+  background-color: #fcfcfc;
+}
+
+.file-list-table tr:hover {
+  background-color: #eef6fd;
+}
+
+/* ========== BUTTON STYLES ========== */
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin: 5px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button.active {
+  font-weight: bold;
+  background-color: #0056b3;
+}
+
+
+/* ========== MOBILE RESPONSIVE ========== */
+@media screen and (max-width: 768px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  th {
+    background-color: #1976d2;
+    color: white;
+  }
+
+  td {
+    padding-left: 50%;
+    position: relative;
+  }
+
+  td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    font-weight: bold;
+  }
+
+  .tab-content {
+    padding: 10px 0;
+  }
+}
