@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="style_00.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+
+<style>
+
+
+  .one:last-child {
+    border-right: none;
+  }
+
+  .rounded-pill {
+    border-radius: var(--bs-border-radius-pill) !important;
+}
+  .event {
+    font-size: 12px;
+    margin-top: 6px;
+    border-left: 4px;
+    padding: 4px 6px;
+    border-radius: 4px;
+  }
+  .not-visible {
+    visibility: hidden;
+  }
+  .visible {
+    visibility: visible;
+  }
+
+  div.page {
+    overflow: auto;
+  }
+  
+  h2 { text-align: center; }
+  
+  
+  nav {
+    width: 10%;
+    float: left;
+    margin-right: 10%;
+  }
+  
+  section {
+    margin-left: 10%;
+  }
+  
+
+
+</style>
+
+</head>
+<body>
+
+
+
+<!-- Navbar -->
+<header>
+  <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+  <a href="./main.html" class="w3-bar-item w3-button w3-theme-l1">Kmail</a>
+  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">
+    <form class="w-100 px-3" style="max-width: 600px;" id="searchForm">
+      <div class="input-group shadow-sm">
+        <input type="text" id="searchInput" name="q" class="form-control form-control-lg rounded-pill" placeholder="Kogle 검색 또는 URL 입력"><button type="submit" class="btn btn-light">Kogle 검색</button>
+      </div></form></a>
+  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">지원</a>
+  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">설정</a>
+  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">구글앱</a>
+</header>
+
+
+<!-- Sidebar -->
+<nav class="w3-sidebar w3-bar-block w3-collapse w3-large w3-theme-l5 w3-animate-left" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
+    <i class="fa fa-remove"></i>
+  </a>
+  <h4 class="w3-bar-item"><b> 편지쓰기</b></h4> <!--<i class="bi bi-middle bi-envelope"></i>-->
+  <a class="w3-bar-item w3-button w3-hover-black" href="#"><i class="bi bi-small bi-envelope-open"></i>  받은편지함</a>
+  <a id="showStarredBtn" class="w3-bar-item w3-button w3-hover-black" href="#"><i class="bi bi-middle bi-bookmark-star-fill"></i> 별표편지함</a>
+  <a class="w3-bar-item w3-button w3-hover-black" href="#"><i class="bi bi-middle bi-envelope-arrow-down-fill"></i> 중요편지함</a>
+  <a class="w3-bar-item w3-button w3-hover-black" href="#"><i class="bi bi-middle bi-envelope-arrow-up-fill"></i> 보낸편지함</a>
+
+  <br>
+  <br>
+  <br>
+
+  
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<section>
+ <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
+<div>
+  <div id="starredMails"></div>
+  <table id="mails" class="visible">
+    <thead>
+      <tr>
+        <th class="calendar-header"><input class="w3-check" type="checkbox" checked="false"></th>
+        <th></th>
+        <th id="refresh"><input class="w3-check" type="checkbox" checked="false"></th>
+        <th id="mail_num_text"></th>
+        <th></th>
+        <th><a class="w3-bar-item w3-button w3-hover-black" href="#"><i class="bi bi-chevron-left"></i></a> <a class="w3-bar-item w3-button w3-hover-black" href="#"><i class="bi bi-chevron-right"></i></a></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="row" id="006">
+        <td class="one mail_check"><input class="w3-check" type="checkbox" checked=false></td>
+        <td class="one"><a><i class="bi-small bi-bookmark"></i></a></td>
+        <td class="one"><a><i class="bi-small bi-star"></i></a></td>
+        <td class="one"><p id="title">Kosa_AI_Study(Slack)</p></td>
+        <td class="one"><p id="content">1개의 읽지 않은 메시지</p></td>
+        <td class="one element not-visible"><a><i class="bi-small bi-box-arrow-in-down"></i></a>  <a><i class="bi-small bi-envelope-slash-fill"></i></a>  <a><i class="bi-small bi-trash"></i></a>  <a><i class="bi-small bi-clock-history"></i></a></td>
+        <td class="one"><td class="event"><p id="mail_date">4월 7일</p></td>
+      </tr>
+    
+      <tr class="row" id="005">
+        <td class="one mail_check"><input class="w3-check" type="checkbox" checked=false></td>
+        <td class="one"><a><i class="bi-small bi-bookmark"></i></a></td>
+        <td class="one"><a><i class="bi-small bi-star"></i></a></td>
+        <td class="one"><p id="title">Notion Team</p></td>
+        <td class="one"><p id="content">추천 페이지 - KOSA_스터디: Kosa AI반 그룹 스터디:</p></td>
+        <td class="one element not-visible"><a><i class="bi-small bi-box-arrow-in-down"></i></a>  <a><i class="bi-small bi-envelope-slash-fill"></i></a>  <a><i class="bi-small bi-trash"></i></a>  <a><i class="bi-small bi-clock-history"></i></a></td>
+        
+        <td class="one"><td class="event"><p id="mail_date">4월 7일</p></td>
+      </tr>
+
+      <tr class="row" id="004">
+        <td class="one mail_check"><input class="w3-check" type="checkbox" checked=false></td>
+        <td class="one"><a><i class="bi-small bi-bookmark"></i></a></td>
+        <td class="one"><a><i class="bi-small bi-star"></i></a></td>
+        <td class="one"><p id="title">Google Maps Timeline</p></td>
+        <td class="one"><p id="content">길동님의 3월 업데이트</p></td>
+        <td class="one element not-visible"><a><i class="bi-small bi-box-arrow-in-down"></i></a>  <a><i class="bi-small bi-envelope-slash-fill"></i></a>  <a><i class="bi-small bi-trash"></i></a>  <a><i class="bi-small bi-clock-history"></i></a></td>
+        <td class="one"><td class="event"><p id="mail_date">4월 4일</p></td>
+      </tr>
+
+      <tr class="row" id="003">
+        <td class="one mail_check"><input class="w3-check" type="checkbox" checked=false></td>
+        <td class="one"><a><i class="bi-small bi-bookmark"></i></a></td>
+        <td class="one"><a><i class="bi-small bi-star"></i></a></td>
+        <td class="one"><p id="title">Tving</p></td>
+        <td class="one"><p id="content">이용권 구매가 완료되었습니다.</p></td>
+        <td class="one element not-visible"><a><i class="bi-small bi-box-arrow-in-down"></i></a>  <a><i class="bi-small bi-envelope-slash-fill"></i></a>  <a><i class="bi-small bi-trash"></i></a>  <a><i class="bi-small bi-clock-history"></i></a></td>
+        <td class="one"><td class="event"><p id="mail_date">4월 1일</p></td>
+      </tr>
+
+      <tr class="row" id="002">
+        <td class="one mail_check"><input class="w3-check" type="checkbox" checked=false></td>
+        <td class="one"><a><i class="bi-small bi-bookmark"></i></a></td>
+        <td class="one"><a><i class="bi-small bi-star"></i></a></td>
+        <td class="one"><p id="title"></p>지니뮤직</td>
+        <td class="one"><p id="content">이용권 구매가 완료되었습니다.</p></td>
+        <td class="one element not-visible"><a><i class="bi-small bi-box-arrow-in-down"></i></a>  <a><i class="bi-small bi-envelope-slash-fill"></i></a>  <a><i class="bi-small bi-trash"></i></a>  <a><i class="bi-small bi-clock-history"></i></a></td>
+        <td class="one"><td class="event"><p id="mail_date">3월 30일</p></td>
+      </tr>
+
+      <tr class="row" id="001">
+        <td class="one mail_check"><input class="w3-check" type="checkbox" checked=false></td>
+        <td class="one"><a><i class="bi-small bi-bookmark"></i></a></td>
+        <td class="one"><a><i class="bi-small bi-star"></i></a></td>
+        <td class="one"><p id="title">kogle Mail</p></td>
+        <td class="one"><p id="content">회원가입을 축하드립니다.</p></td>
+        <td class="one element not-visible"><a><i class="bi-small bi-box-arrow-in-down"></i></a>  <a><i class="bi-small bi-envelope-slash-fill"></i></a>  <a><i class="bi-small bi-trash"></i></a>  <a><i class="bi-small bi-clock-history"></i></a></td>
+        <td class="one"><td class="event"><p id="mail_date">3월21일</p></td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- 계속 추가 가능, javascript에서 추가하는 기능 넣기!!! -->
+</div>
+
+</section>
+
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Open modal for @getbootstrap</button>
+
+<!-- modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Recipient:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="mail.js"></script>
+<script>
+
+</script>
+</body>
+</html>
