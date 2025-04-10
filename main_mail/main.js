@@ -38,31 +38,19 @@ closeBtn.addEventListener("click", function () {
   sidebar.classList.remove("show-sidebar");
 });
 
+/*
+ // 드롭다운을 강제로 닫기 위한 코드
+ document.getElementById("closeDropdown").addEventListener("click", function() {
+  var dropdown = new bootstrap.Dropdown(document.getElementById('dropdownMenuButton'));
+  dropdown.hide(); // 강제로 닫기
+});
 
-
-/* mail */ 
-
-
-// Get the Sidebar
-var mySidebar = document.getElementById("mySidebar");
-
-// Get the DIV with overlay effect
-var overlayBg = document.getElementById("myOverlay");
-
-// Toggle between showing and hiding the sidebar, and add overlay effect
-function w3_open() {
-  if (mySidebar.style.display === 'block') {
-    mySidebar.style.display = 'none';
-    overlayBg.style.display = "none";
-  } else {
-    mySidebar.style.display = 'block';
-    overlayBg.style.display = "block";
+// 드롭다운 외부를 클릭하면 닫기
+$(document).click(function (e) {
+  if (!$(e.target).closest('.dropdown').length) {
+    var dropdown = new bootstrap.Dropdown(document.getElementById('dropdownMenuButton'));
+    dropdown.hide(); // 드롭다운 메뉴 강제 닫기
   }
-}
+});
 
-// Close the sidebar with the close button
-function w3_close() {
-  mySidebar.style.display = "none";
-  overlayBg.style.display = "none";
-}
-
+*/
