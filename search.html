@@ -125,6 +125,11 @@
         cursor: pointer;
       }
 
+      .clickable-image:hover {
+        border: 3px solid #f9f9f9;
+        border-radius: 4px;
+      }
+
       .search-result {
         margin: 24px 0;
       }
@@ -278,6 +283,17 @@
         cursor: pointer;
       }
 
+      .more-news,
+      .more-image-button {
+        background-color: #f1f3f4;
+        transition: background-color 0.2s ease;
+      }
+
+      .more-news:hover,
+      .more-image-button:hover {
+        background-color: #e0e0e0; /* darker shade on hover */
+      }
+
       footer {
         font-size: 13px;
         color: #70757a;
@@ -388,8 +404,8 @@
           href="https://www.google.com/search?sca_esv=ba234ef390c7e2d8&q=kosa&tbm=nws&source=lnms&fbs=ABzOT_CZsxZeNKUEEOfuRMhc2yCI6hbTw9MNVwGCzBkHjFwaK_c_FL6GOJnyRA7_JMCOHrThC7IpG8FfUArdNN_MTB173DMRCW665OUZL-1G_ZmSemPSvvwgWioDkfbkluJp_Xs4BQY8m0gSRuygvGokg_BtQ0wMQHCXGH2W5Go7q6zppCML0Dl22NEql30lP68caggup9qcKlbDGU7L2PTH1od1EHji5Q&sa=X&ved=2ahUKEwif89zdp8yMAxVbZ_UHHTMyFWgQ0pQJegQIFRAB&biw=1385&bih=791&dpr=2"
           class="more-news"
           target="_self"
-          >뉴스 더보기 →</a
-        >
+          >뉴스 더보기 <i class="bi bi-chevron-right"></i
+        ></a>
 
         <div class="image-box-section">
           <h3>이미지</h3>

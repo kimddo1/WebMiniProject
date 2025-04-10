@@ -58,15 +58,17 @@ $(function () {
 
   $("#showMoreImages").on("click", function () {
     if (!imageRowsShown) {
-      $("#imageRow2").slideDown(600, function () {
+      $("#imageRow2").slideDown(600);
+
+      setTimeout(function () {
         $("#imageRow3").slideDown(600);
-      });
+      }, 400);
 
       $(this).html(`이미지 전체 보기 <i class="bi bi-chevron-right"></i>`);
 
       imageRowsShown = true;
     } else {
-      window.open("https://www.google.com/search?q=kosa&udm=2");
+      window.open("https://www.google.com/search?q=kosa&udm=2", "_self");
     }
   });
 
