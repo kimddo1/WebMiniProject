@@ -27,7 +27,6 @@
     margin-top: 0px;
   }
 
-
   .logo {
     font-size: 80px;
     font-weight: bold;
@@ -40,7 +39,6 @@
   .logo span:nth-child(4) { color: #4285f4; }
   .logo span:nth-child(5) { color: #34a853; }
   .logo span:nth-child(6) { color: #ea4335; }
-
 
   footer {
     position: absolute;
@@ -121,7 +119,6 @@ bottom: 0;
 height: inherit;
 }
 
-
 .header {
   display: flex;
   justify-content: space-between;
@@ -168,9 +165,9 @@ user-select: none;
 }
 
 @media (min-width: 768px) {
-.bd-placeholder-img-lg {
-  font-size: 3.5rem;
-}
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
 }
 
 .b-example-divider {
@@ -259,46 +256,20 @@ color: cornflowerblue;
 <body>
 
   <!-- Navbar -->
-
-
   <header class="header">
-    <nav class="navbar navbar-expand-sm navbar-light fixed-top ">
+    <nav class="navbar navbar-expand-sm navbar-light fixed-top right">
       <!-- Navbar -->
       <a href="#home" class="navbar-brand">kogle</a>
-      <a href="#calendar" class="nav-link"><i class="bi bi-calendar-date"></i></a>
-
-          
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-          Dropdown button
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <li><a class="dropdown-item" href="#">Kmail</a></li>
-          <li><a class="dropdown-item" href="#">drive</a></li>
-          <li><a class="dropdown-item" href="#">calendar</a></li>
-        </ul>
-      </div>
+      <a href="#calendar" class="nav-link"><i class="bi bi-calendar-date">Kmail</i></a>
+      <a href="#mail" class="nav-link"><i class="bi bi-calendar-date">drive</i></a>
+      <a href="#calendar" class="nav-link"><i class="bi bi-calendar-date">calendar</i></a>
       <a href="mail.html" class="nav-link">Kmail</a>
-
-
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Dropdown button
-        </button>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Action</a></li>
-          <li><a class="dropdown-item" href="#">Another action</a></li>
-          <li><a class="dropdown-item" href="#">Something else here</a></li>
-        </ul>
-      </div>
     </nav>
   </header>
-
 
  <div class="logo">
    <span>K</span><span>o</span><span>g</span><span>l</span><span>e</span>
  </div>
-
 
  <form class="w-100 px-3" style="max-width: 600px;" id="searchForm">
    <div class="input-group shadow-sm">
