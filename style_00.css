@@ -1,0 +1,150 @@
+
+
+  .form-control:focus {
+    box-shadow: 0 0 0 0.2rem rgba(66,133,244,.25);
+    border-color: #4285f4;
+  }
+
+  .gd_id {
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+    display: fixed;
+    padding-left: 8px;
+    min-width: 0;
+  }
+
+  .svg {
+    display: inline-block;
+    content: "";
+    vertical-align: -.125em;
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+    color: #000;
+  }
+
+/* 왼쪽 메뉴 */
+.sidebar-left {
+    width: 100px;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* 오른쪽 메뉴 */
+.sidebar-right {
+    width: 100px;
+    background-color: #444;
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.sidebar-left h2,
+.sidebar-right h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.sidebar-left ul,
+.sidebar-right ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-left li,
+.sidebar-right li {
+    margin: 15px 0;
+    cursor: pointer;
+}
+
+.sidebar-left li:hover,
+.sidebar-right li:hover {
+    text-decoration: underline;
+}
+
+
+  .not-visible{
+    visibility: hidden;
+  }
+
+  .element {
+    visibility: hidden;
+  }
+  
+  /* .one 요소에 마우스를 올렸을 때, 그 자식 .element의 visibility를 visible로 변경합니다 */
+  .one:hover .element {
+    visibility: visible;
+  }
+
+  /* mail */
+
+  * {
+    box-sizing: border-box;
+  }
+
+  header {
+    background-color: #ddd;
+    color: white;
+    padding: 16px 24px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .table-container {
+    max-height: 500px; /* 최대 높이를 500px로 제한 */
+    overflow-y: auto; /* 세로로 스크롤 가능하게 설정 */
+  }
+  .calendar-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+
+
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 8px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+
+  .calendar-header h2 {
+    margin: 2;
+  }
+
+  .one:last-child {
+    border-right: none;
+  }
+
+  .rounded-pill {
+    border-radius: var(--bs-border-radius-pill) !important;
+}
+  .event {
+    font-size: 12px;
+    margin-top: 6px;
+    background-color: #e8f0fe;
+    border-left: 4px solid #4285f4;
+    padding: 4px 6px;
+    border-radius: 4px;
+    color: #1a73e8;
+  }
+  .not-visible {
+    visibility: hidden;
+  }
+  .visible {
+    visibility: visible;
+  }
+
+  .display-all{
+    display: contents;
+  }
+  .display-none{
+    display: none;
+  }

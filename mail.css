@@ -1,0 +1,69 @@
+html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
+.w3-sidebar {
+  z-index: 3;
+  width: 250px;
+  top: 43px;
+  bottom: 0;
+  height: inherit;
+}
+  * {
+    box-sizing: border-box;
+  }
+
+  header {
+    background-color: #4285f4;
+    color: white;
+    padding: 16px 24px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .table-container {
+    max-height: 500px; /* 최대 높이를 500px로 제한 */
+    overflow-y: auto; /* 세로로 스크롤 가능하게 설정 */
+  }
+  .calendar-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+
+
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 8px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+
+  .calendar-header h2 {
+    margin: 2;
+  }
+
+  .one:last-child {
+    border-right: none;
+  }
+
+  .rounded-pill {
+    border-radius: var(--bs-border-radius-pill) !important;
+}
+  .event {
+    font-size: 12px;
+    margin-top: 6px;
+    background-color: #e8f0fe;
+    border-left: 4px solid #4285f4;
+    padding: 4px 6px;
+    border-radius: 4px;
+    color: #1a73e8;
+  }
+  .not-visible {
+    visibility: hidden;
+  }
+  .visible {
+    visibility: visible;
+  }
