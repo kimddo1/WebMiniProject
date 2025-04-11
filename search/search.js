@@ -7,7 +7,6 @@ if (query && query.toLowerCase() !== "kosa") {
   )}`;
 } else {
   document.body.style.display = "block";
-
   const input = document.getElementById("searchInput");
   if (input && query) {
     input.value = query;
@@ -66,26 +65,35 @@ $(function () {
   $(".title").each(function () {
     const url = $(this).data("url");
     if (url) {
-      $(this)
-        .css("cursor", "pointer")
-        .on("click", function (e) {
-          e.preventDefault();
-          window.open(url, "_self");
-        });
+      $(this).on("click", function (e) {
+        e.preventDefault();
+        $("body").css("cursor", "progress");
+        $(".title").css("cursor", "progress");
+  
+        setTimeout(() => {
+          window.location.href = url;
+        }, 1000);
+      });
     }
   });
+  
 
   $(".news-title").each(function () {
     const url = $(this).data("url");
     if (url) {
-      $(this)
-        .css("cursor", "pointer")
-        .on("click", function (e) {
-          e.preventDefault();
-          window.open(url, "_self");
-        });
+      $(this).on("click", function (e) {
+        e.preventDefault();
+        $("body").css("cursor", "progress");
+        $(".news-title").css("cursor", "progress");
+  
+        setTimeout(() => {
+          window.location.href = url;
+        }, 1000);
+      });
     }
   });
+  
+  
 
   let imageRowsShown = false;
 
