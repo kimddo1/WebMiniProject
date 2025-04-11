@@ -64,66 +64,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td class="mail_check"><input class="form-check-input" type="checkbox"></td>
-        <td class="one"><a><i class="bi-small bi-bookmark"></i></a></td>
-        <td><a><i class="bi-small bi-star"></i></a></td>
-        <td><p id="title">Kosa_AI_Study(Slack)</p></td>
-        <td><p id="content">1개의 읽지 않은 메시지</p></td>
-        <td class="element not-visible"><a><i class="bi-small bi-box-arrow-in-down"></i></a>  <a><i class="bi-small bi-envelope-slash-fill"></i></a>  <a><i class="bi-small bi-trash"></i></a>  <a><i class="bi-small bi-clock-history"></i></a></td>
-        <td><td class="event"><p id="mail_date">2025.04.07</p></td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td class="mail_check"><input class="form-check-input" type="checkbox"></td>
-        <td class=""><a><i class="bi-small bi-bookmark"></i></a></td>
-        <td class=""><a><i class="bi-small bi-star"></i></a></td>
-        <td class=""><p id="title">Notion Team</p></td>
-        <td class=""><p id="content">추천 페이지 - KOSA_스터디: Kosa AI반 그룹 스터디:</p></td>
-        <td class="element not-visible"><a><i class="bi-small bi-box-arrow-in-down"></i></a>  <a><i class="bi-small bi-envelope-slash-fill"></i></a>  <a><i class="bi-small bi-trash"></i></a>  <a><i class="bi-small bi-clock-history"></i></a></td>
-        <td class=""><td class="event"><p id="mail_date">2025.04.07</p></td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td class="mail_check"><input class="form-check-input" type="checkbox"></td>
-        <td class=""><a><i class="bi-small bi-bookmark"></i></a></td>
-        <td class=""><a><i class="bi-small bi-star"></i></a></td>
-        <td class=""><p id="title">Google Maps Timeline</p></td>
-        <td class=""><p id="content">길동님의 3월 업데이트 </p></td>
-        <td class="element not-visible"><a><i class="bi-small bi-box-arrow-in-down"></i></a>  <a><i class="bi-small bi-envelope-slash-fill"></i></a>  <a><i class="bi-small bi-trash"></i></a>  <a><i class="bi-small bi-clock-history"></i></a></td>
-        <td class=""><td class="event"><p id="mail_date">2025.04.04</p></td>
-       </tr>
-       <tr>
-        <th scope="row">4</th>
-        <td class="mail_check"><input class="form-check-input" type="checkbox"></td>
-        <td class=""><a><i class="bi-small bi-bookmark"></i></a></td>
-        <td class=""><a><i class="bi-small bi-star"></i></a></td>
-        <td class=""><p id="title">Tving</p></td>
-        <td class=""><p id="content">이용권 구매가 완료되었습니다.</p></td>
-        <td class="element not-visible"><a><i class="bi-small bi-box-arrow-in-down"></i></a>  <a><i class="bi-small bi-envelope-slash-fill"></i></a>  <a><i class="bi-small bi-trash"></i></a>  <a><i class="bi-small bi-clock-history"></i></a></td>
-        <td class=""><td class="event"><p id="mail_date">2025.04.01</p></td>
-      </tr>
-      <tr>
-        <th scope="row">5</th>
-        <td class="mail_check"><input class="form-check-input" type="checkbox"></td>
-        <td class=""><a><i class="bi-small bi-bookmark"></i></a></td>
-        <td class=""><a><i class="bi-small bi-star"></i></a></td>
-        <td class=""><p id="title">Notion Team</p></td>
-        <td class=""><p id="content">추천 페이지 - KOSA_스터디: Kosa AI반 그룹 스터디:</p></td>
-        <td class="element not-visible"><a><i class="bi-small bi-box-arrow-in-down"></i></a>  <a><i class="bi-small bi-envelope-slash-fill"></i></a>  <a><i class="bi-small bi-trash"></i></a>  <a><i class="bi-small bi-clock-history"></i></a></td>
-        <td class=""><td class="event"><p id="mail_date">2025.04.07</p></td>
-      </tr>
-      <tr>
-        <th scope="row">6</th>
-        <td class="mail_check"><input class="form-check-input" type="checkbox"></td>
-        <td class=""><a><i class="bi-small bi-bookmark"></i></a></td>
-        <td class=""><a><i class="bi-small bi-star"></i></a></td>
-        <td class=""><p id="title">Google Maps Timeline</p></td>
-        <td class=""><p id="content">길동님의 3월 업데이트</p></td>
-        <td class="element not-visible"><a><i class="bi-small bi-box-arrow-in-down"></i></a>  <a><i class="bi-small bi-envelope-slash-fill"></i></a>  <a><i class="bi-small bi-trash"></i></a>  <a><i class="bi-small bi-clock-history"></i></a></td>
-        <td class=""><td class="event"><p id="mail_date">2025.04.04</p></td>
-      </tr>
+      
 
     </tbody>
   </table>
@@ -144,6 +85,10 @@
               <input type="text" class="form-control" id="recipient-name" required>
             </div>
             <div class="mb-3">
+              <label for="title-text" class="col-form-label">title:</label>
+              <textarea class="form-control" id="title-text" required></textarea>
+            </div>
+            <div class="mb-3">
               <label for="message-text" class="col-form-label">Content:</label>
               <textarea class="form-control" id="message-text" required></textarea>
             </div>
@@ -155,6 +100,26 @@
         </div>
       </div>
     </div>
+</div>
+<!-- 상세보기 모달 -->
+<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="detailModalLabel">Email Detail</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Recipient:</strong> <span id="detail-recipient"></span></p>
+        <p><strong>Title:</strong> <span id="detail-title"></span></p>
+        <p><strong>Content:</strong> <span id="detail-content"></span></p>
+        <p><strong>Date:</strong> <span id="detail-date"></span></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script src="mail.js"></script>

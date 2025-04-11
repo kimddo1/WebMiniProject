@@ -1,3 +1,43 @@
+const mailDataList = [
+  {
+    title: "Kosa_AI_Study(Slack) 초대 메시지",
+    recipient: "Slack",
+    content: "1개의 읽지 않은 메시지",
+    date: "2025.04.07"
+  },
+  {
+    title: "Notion Team으로부터 메세지 도착",
+    recipient: "Notion",
+    content: "추천 페이지 - KOSA_스터디: Kosa AI반 그룹 스터디:",
+    date: "2025.04.07"
+  },
+  {
+    title: "Google Timeline",
+    recipient: "Google",
+    content: "길동님의 3월 업데이트",
+    date: "2025.04.04"
+  },
+  {
+    title: "Tving 이용권 구매에 감사드립니다.",
+    recipient: "Tving",
+    content: "이용권 구매가 완료되었습니다.",
+    date: "2025.04.01"
+  },
+  {
+    title: "Notion Team으로부터 메시지가 도착하였습니다.",
+    recipient: "notion",
+    content: "추천 페이지 - KOSA_스터디: Kosa AI반 그룹 스터디:",
+    date: "2025.04.07"
+  },
+  {
+    title: "3월 Google Maps Timeline",
+    recipient: "Google",
+    content: "길동님의 3월 업데이트",
+    date: "2025.04.04"
+  }
+];
+
+
 
 $(document).ready(function () {
 
@@ -10,9 +50,9 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   // bookmark누르면 색 변함
-  $(document).on('click', '.bi-bookmark .bi-bookmark-fill', function () {
-      $(this).toggleClass('.bi-bookmark .bi-bookmark-fill');
-  });
+  $(document).on('click', '.bi-bookmark, .bi-bookmark-fill', function () {
+    $(this).toggleClass('bi-bookmark bi-bookmark-fill');
+});
 });
 
 
@@ -127,17 +167,20 @@ $(document).ready(function() {
 
 $(document).ready(function() {
   // 이메일 형식 검증 및 체크박스 상태 변경
+
+  
+
   $('#emailInput').on('input', function() {
     var emailValue = $(this).val();
     var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; // 이메일 형식 정규식
 
-    if (emailRegex.test(emailValue)) {
-        $('#emailError').text('Valid email address').css('color', 'green');
-        $('#mail_check').prop('checked', true);  // 이메일이 유효하면 체크박스를 체크
-    } else {
-        $('#emailError').text('Invalid email address').css('color', 'red');
-        $('#mail_check').prop('checked', false);  // 이메일이 유효하지 않으면 체크박스를 해제
+    var email = $('#recipient-name').val();
+    var isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (!isValidEmail) {
+      alert("유효한 이메일 주소를 입력해주세요.");
+      return;
     }
+
   });
 
   // 폼 제출 시
@@ -188,5 +231,60 @@ $(document).ready(function() {
         $(this).hide();  // trash 클래스가 있으면 해당 행을 숨김
       }
     });
+  });
+});
+
+function addMailRow(mail, index) {
+  const row = `
+    <tr>
+      <th scope="row">${index + 1}</th>
+      <td class="mail_check"><input class="form-check-input" type="checkbox"></td>
+      <td><a><i class="bi bi-bookmark"></i></a></td>
+      <td><a><i class="bi bi-star"></i></a></td>
+      <td><p>${mail.recipient}</p></td>
+      <td><p>${mail.title}</p></td>
+      <td class="not-visible"><p>${mail.content}</p></td>
+      <td class="element not-visible">
+        <a><i class="bi bi-box-arrow-in-down"></i></a>
+        <a><i class="bi bi-envelope-slash-fill"></i></a>
+        <a><i class="bi bi-trash"></i></a>
+        <a><i class="bi bi-clock-history"></i></a>
+      </td>
+      <td class="event"><p>${mail.date}</p></td>
+    </tr>
+  `;
+
+  $("table tbody").append(row);
+}
+$(document).ready(function () {
+  // 기존 테이블 내용이 있다면 지우고 시작
+  $("table tbody").empty();
+
+  // 메일 리스트 반복해서 테이블에 추가
+  mailDataList.forEach((mail, index) => {
+    addMailRow(mail, index);
+  });
+
+  
+
+});
+
+$(document).ready(function() {
+  // 각 테이블 행 클릭 시, 해당 메일의 정보를 모달에 표시
+  $('table tbody').on('click', 'tr', function() {
+    // 클릭된 행에서 메일 정보 가져오기
+    var title = $(this).find('td').eq(4).text();  // 제목
+    var recipient = $(this).find('td').eq(3).text();  // 수신자
+    var content = $(this).find('td').eq(5).text();  // 내용
+    var date = $(this).find('td').eq(7).text();  // 날짜
+    
+    // 모달에 해당 정보 설정
+    $('#detail-title').text(title);
+    $('#detail-recipient').text(recipient);
+    $('#detail-content').text(content);
+    $('#detail-date').text(date);
+    
+    // 모달 열기
+    $('#detailModal').modal('show');
   });
 });
