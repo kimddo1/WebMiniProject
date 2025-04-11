@@ -125,3 +125,61 @@ async function listRecentFiles() {
     ul.appendChild(li);
   });
 }
+
+function openCreateModal() {
+  const modal = document.getElementById("createModal");
+  if (modal) {
+    modal.style.display = "flex";
+  }
+}
+
+function closeModal() {
+  const modal = document.getElementById("createModal");
+  if (modal) {
+    modal.style.display = "none";
+  }
+  document.getElementById("newName").value = "";
+}
+
+function confirmCreate() {
+  const name = document.getElementById("newName").value.trim();
+  const type = document.getElementById("createType").value;
+
+  if (!accessToken) {
+    alert("Please login first.");
+    return;
+  }
+
+  if (!name) {
+    alert("Please enter a name.");
+    return;
+  }
+
+  const metadata = {
+    name,
+    mimeType: type === "folder" 
+      ? "application/vnd.google-apps.folder" 
+      : "application/vnd.google-apps.document"
+  };
+
+  fetch("https://www.googleapis.com/drive/v3/files", {
+    method: "POST",
+    headers: {
+      Authorization: "Bearer " + accessToken,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(metadata)
+  })
+    .then(response => response.json())
+    .then(data => {
+      alert(`✅ ${type === "folder" ? "Folder" : "File"} '${data.name}' created!`);
+      closeModal();
+      console.log("Created:", data);
+      // TODO: Refresh file list if needed
+    })
+    .catch(error => {
+      console.error("Error creating item:", error);
+      alert("❌ Failed to create item.");
+    });
+}
+
