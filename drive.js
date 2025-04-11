@@ -182,3 +182,60 @@ function confirmCreate() {
       alert("❌ Failed to create item.");
     });
 }
+
+async function loadRecentFiles() {
+  if (!accessToken) {
+    alert("❗ Please log in first.");
+    return;
+  }
+
+  const response = await fetch(
+    "https://www.googleapis.com/drive/v3/files?" +
+      new URLSearchParams({
+        q: "trashed = false",
+        orderBy: "viewedByMeTime desc",
+        fields: "files(id, name, owners(displayName), viewedByMeTime, size, mimeType)",
+        pageSize: 50,
+      }),
+    {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }
+  );
+
+  const data = await response.json();
+  const fileList = data.files || [];
+  const tableBody = document.getElementById("recentFileList");
+  tableBody.innerHTML = "";
+
+  fileList.forEach((file) => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${file.name}</td>
+      <td>${file.owners?.[0]?.displayName || "N/A"}</td>
+      <td>${file.viewedByMeTime ? new Date(file.viewedByMeTime).toLocaleString() : "N/A"}</td>
+      <td>${file.size ? formatBytes(file.size) : "—"}</td>
+    `;
+    tableBody.appendChild(row);
+  });
+}
+
+function formatBytes(bytes) {
+  if (bytes === 0) return "0 B";
+  const k = 1024,
+    sizes = ["B", "KB", "MB", "GB", "TB"];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
+}
+
+function showTab(event, tabId) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+  document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+
+  if (tabId === "recent") {
+    loadRecentFiles();
+  }
+}
