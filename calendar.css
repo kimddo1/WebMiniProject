@@ -1,0 +1,157 @@
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Roboto", sans-serif;
+
+}
+
+.w3-sidebar {
+    z-index: 3;
+    width: 350px;
+    top: 43px;
+    bottom: 0;
+    height: inherit;
+}
+
+.w3-bar-item {
+    font-size: 22px;
+}
+
+
+.create-btn {
+    margin-top: 60px;
+    margin-left: 25%;
+    padding: 15px 25px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 9px;
+    background-color: white;
+    cursor: pointer;
+}
+
+
+.miniCalendar {
+    display: flex;
+    margin-top: 60px;
+    margin-left: 5%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+    background-color: #f8f9fa;
+}
+
+
+header {
+    background-color: #4285f4;
+    color: white;
+    padding: 16px 24px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+
+.calendar-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+
+.calendar-header h2 {
+    margin: 0;
+
+}
+
+
+.weekdays,
+.week {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+}
+
+
+.weekdays div {
+    background-color: #f1f3f4;
+    padding: 12px;
+    font-weight: bold;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+
+.day {
+    height: 120px;
+    border-right: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 8px;
+    text-align: left;
+    position: relative;
+}
+
+
+.day:last-child {
+    border-right: none;
+}
+
+.day-number {
+    font-size: 14px;
+    font-weight: bold;
+    color: #444;
+}
+
+
+.event1 {
+    font-size: 20px;
+    margin-top: 6px;
+    background-color: #ffe9c9;
+    border-left: 4px solid #f7b21f;
+    padding: 4px 6px;
+    border-radius: 4px;
+    color: #f7b21f;
+}
+
+.event2 {
+    font-size: 20px;
+    margin-top: 6px;
+    background-color: #b2d5fd;
+    border-left: 4px solid #412df5;
+    padding: 4px 6px;
+    border-radius: 4px;
+    color: #412df5;
+}
+
+.event3 {
+    font-size: 20px;
+    margin-top: 6px;
+    background-color: #e9b9de;
+    border-left: 4px solid #b12080;
+    padding: 4px 6px;
+    border-radius: 4px;
+    color: #b12080;
+}

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Kogle Calendar</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="calendar.css">
+
+    <!--togglebtn(jquery)-->
+    <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> -->
+    <!-- 오류해결하려다 최신버전으로 해봄봄 -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+    <!--달력ui-->
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <!--달력ui-->
+    <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
+    <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+
+
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <!-- Navbar -->
+    <div class="w3-top">
+        <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
+            <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1"
+                href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+            <a href="#" class="w3-bar-item w3-button w3-theme-l1">kogle</a>
+            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">설정</a>
+            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">검색</a>
+            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">지원</a>
+            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">주소록</a>
+            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">더보기</a>
+            <!-- <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Partners</a> -->
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <nav class="w3-sidebar w3-bar-block w3-collapse w3-large w3-theme-l5 w3-animate-left" id="mySidebar">
+        <a href="javascript:void(0)" onclick="w3_close()"
+            class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
+            <i class="fa fa-remove"></i>
+        </a>
+
+        <h4 class="w3-bar-item"><b>Menu</b></h4>
+
+        <a class="w3-bar-item w3-button w3-hover-black" href="#">
+            <!-- <button style="margin-left:10px;" class="w3-button w3-small w3-round w3-theme">
+                <i class="fa fa-search"></i>
+            </button> -->
+            <input type="text" name="userSearch" id="userSearch" placeholder="사용자 검색" size="18">
+            <button id="searchBtn" class="w3-button w3-theme w3-right">
+                <i class="fa fa-search"></i>
+            </button>
+
+            <!-- <button class="menu-btn" >
+                <i class="fa fa-search"></i>
+            </button> -->
+        </a>
+
+        <a class="w3-bar-item w3-button w3-hover-black" href="#">내 캘린더
+            <button id="myToggleBtn" class="w3-button w3-theme w3-right">
+                <i class="fa fa-chevron-down"></i>
+            </button>
+        </a>
+
+        <div id="myCalendarOptions" style="display:none; padding-left: 20px; padding-bottom: 10px;">
+            <label><input type="checkbox" checked style="padding-left: 20px;" id="allCheck" /><b>All</b></label><br>
+            <label><input type="checkbox" checked class="subCheck" id="check1">생일</label><br>
+            <label><input type="checkbox" checked class="subCheck" id="check2">업무</label><br>
+            <label><input type="checkbox" checked class="subCheck" id="check3">일정</label><br>
+        </div>
+
+        <a class="w3-bar-item w3-button w3-hover-black" href="#">다른 캘린더
+            <button id="otherToggleBtn" class="w3-button w3-theme w3-right">
+                <i class="fa fa-chevron-down"></i>
+            </button>
+        </a>
+
+        <div id="otherCalendarOptions" style="display:none; padding-left: 20px; padding-bottom: 10px;">
+            <label><input type="checkbox">대한민국의 휴일</label>
+        </div>
+
+        <a class="w3-bar-item w3-button w3-hover-black" href="#">휴지통
+            <button class="w3-button w3-theme w3-right">
+                <i class="fa fa-trash"></i>
+            </button>
+        </a>
+
+
+
+        <!--만들기 버튼(모달하려고 data-bs-toggle와 data-bs-target속성추가)-->
+        <button class="create-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-plus-square"
+                viewBox="0 0 16 16">
+                <path
+                    d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
+                <path
+                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+            </svg> 만들기
+        </button>
+
+
+        <div class="miniCalendar" id="datepicker"></div>
+
+    </nav>
+
+    <!--bootstrap modal-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">일정 추가</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <textarea id="scheduleInput" cols="30" rows="8" style="margin-left: 25%;"
+                        placeholder="일정을 입력하세요."></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                    <button type="button" id="saveBtn" class="btn btn-primary">저장</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu"
+        id="myOverlay"></div>
+
+    <div class="calendar-container">
+        <div class="calendar-header">
+            <button class="nav-btn">◀ 이전</button>
+            <h2>2025년 4월</h2>
+            <button class="nav-btn">▶ 다음</button>
+        </div>
+        <div class="weekdays">
+            <div>일</div>
+            <div>월</div>
+            <div>화</div>
+            <div>수</div>
+            <div>목</div>
+            <div>금</div>
+            <div>토</div>
+        </div>
+
+        <!-- Week 1 -->
+        <div class="week">
+            <div class="day">
+                <div class="day-number">30</div>
+            </div>
+            <div class="day">
+                <div class="day-number">31</div>
+            </div>
+            <div class="day">
+                <div class="day-number">1</div>
+                <div class="event3">운동하기</div>
+            </div>
+            <div class="day">
+                <div class="day-number">2</div>
+            </div>
+            <div class="day">
+                <div class="day-number">3</div>
+                <div class="event2">스터디 모임</div>
+            </div>
+            <div class="day">
+                <div class="day-number">4</div>
+
+            </div>
+            <div class="day">
+                <div class="day-number">5</div>
+            </div>
+        </div>
+
+        <!-- Week 2 -->
+        <div class="week">
+            <div class="day">
+                <div class="day-number">6</div>
+            </div>
+            <div class="day">
+                <div class="day-number">7</div>
+            </div>
+            <div class="day">
+                <div class="day-number">8</div>
+                <div class="event1">홍길동 생일</div>
+            </div>
+            <div class="day">
+                <div class="day-number">9</div>
+            </div>
+            <div class="day">
+                <div class="day-number">10</div>
+                <div class="event2">스터디 모임</div>
+            </div>
+            <div class="day">
+                <div class="day-number">11</div>
+                <!-- <div class="event2">프로젝트 발표</div> -->
+                <div class="event1">김길동 생일</div>
+            </div>
+            <div class="day">
+                <div class="day-number">12</div>
+            </div>
+        </div>
+
+        <!--week 3-->
+        <div class="week">
+            <div class="day">
+                <div class="day-number">13</div>
+                <div class="event3">자격증시험</div>
+            </div>
+            <div class="day">
+                <div class="day-number">14</div>
+            </div>
+            <div class="day">
+                <div class="day-number">15</div>
+            </div>
+            <div class="day">
+                <div class="day-number">16</div>
+            </div>
+            <div class="day">
+                <div class="day-number">17</div>
+                <div class="event2">스터디 모임</div>
+            </div>
+            <div class="day">
+                <div class="day-number">18</div>
+            </div>
+            <div class="day">
+                <div class="day-number">19</div>
+                <div class="event1">이길동 생일</div>
+            </div>
+        </div>
+
+        <!-- week 4 -->
+        <div class="week">
+            <div class="day">
+                <div class="day-number">20</div>
+            </div>
+            <div class="day">
+                <div class="day-number">21</div>
+            </div>
+            <div class="day">
+                <div class="day-number">22</div>
+            </div>
+            <div class="day">
+                <div class="day-number">23</div>
+            </div>
+            <div class="day">
+                <div class="day-number">24</div>
+                <div class="event2">스터디 모임</div>
+            </div>
+            <div class="day">
+                <div class="day-number">25</div>
+            </div>
+            <div class="day">
+                <div class="day-number">26</div>
+            </div>
+        </div>
+
+        <!--week 5-->
+        <div class="week">
+            <div class="day">
+                <div class="day-number">27</div>
+                <div class="event3">자격증시험</div>
+            </div>
+            <div class="day">
+                <div class="day-number">28</div>
+            </div>
+            <div class="day">
+                <div class="day-number">29</div>
+                <div class="event1">박길동 생일</div>
+            </div>
+            <div class="day">
+                <div class="day-number">30</div>
+            </div>
+            <div class="day">
+                <div class="day-number">1</div>
+                <div class="event2">스터디 모임</div>
+            </div>
+            <div class="day">
+                <div class="day-number">2</div>
+            </div>
+            <div class="day">
+                <div class="day-number">3</div>
+                <div class="event3">여행</div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    <!-- 위치수정함..Bootstrap의 JS는 HTML이 먼저 렌더링되고 나서 실행돼야함 -->
+    <!-- Bootstrap 5 JS (모달 작동용) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="calendar.js"></script>
+</body>
+
+</html>

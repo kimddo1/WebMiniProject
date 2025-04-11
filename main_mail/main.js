@@ -1,10 +1,10 @@
 // 검색 실행 함수
 function performSearch() {
-   const query = document.getElementById("searchInput").value.trim();
-   if (query) {
-     window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
-   }
- }
+  const query = document.getElementById("searchInput").value.trim();
+  if (query) {
+    window.location.href = `../search/search.html?query=${encodeURIComponent(query)}`;
+  }
+}
   // 폼 제출 (Enter 키 포함)
  document.getElementById("searchForm").addEventListener("submit", function (e) {
    e.preventDefault();
@@ -14,9 +14,6 @@ function performSearch() {
  document.getElementById("luckyBtn").addEventListener("click", function () {
    alert("행운을 빌어요! 🥳");
  });
-
-
-
 
  // ".sidebar-toggle" 클래스를 가진 요소를 찾아 toggleBtn 변수에 할당합니다.
 const toggleBtn = document.querySelector(".sidebar-toggle");
@@ -37,14 +34,3 @@ closeBtn.addEventListener("click", function () {
   // 클릭 시, sidebar 요소의 클래스 리스트에서 "show-sidebar" 클래스를 제거합니다.
   sidebar.classList.remove("show-sidebar");
 });
-
-/* sidebar */
-
-/* global bootstrap: false */
-(() => {
-  'use strict'
-  const tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-  tooltipTriggerList.forEach(tooltipTriggerEl => {
-    new bootstrap.Tooltip(tooltipTriggerEl)
-  })
-})()
