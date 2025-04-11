@@ -253,6 +253,47 @@
       tokenClient.requestAccessToken();
     }
   </script>
+  <script>
+    async function emptyTrash() {
+      if (!accessToken) {
+        alert("❗ Please log in first.");
+        return;
+      }
+  
+      const confirmed = confirm("⚠️ Are you sure you want to permanently delete all items in Trash?");
+      if (!confirmed) return;
+  
+      const trashedFiles = await getTrashedFiles();
+  
+      for (const file of trashedFiles) {
+        await deleteFilePermanently(file.id);
+      }
+  
+      alert("✅ Trash emptied.");
+      document.getElementById("trashList").innerHTML = '';
+    }
+  
+    async function getTrashedFiles() {
+      const response = await fetch("https://www.googleapis.com/drive/v3/files?q=trashed=true", {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+  
+      const data = await response.json();
+      return data.files || [];
+    }
+  
+    async function deleteFilePermanently(fileId) {
+      await fetch(`https://www.googleapis.com/drive/v3/files/${fileId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+    }
+  </script>
+  
   <script src="script.js"></script>
 
   <div id="createModal" style="
