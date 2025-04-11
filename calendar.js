@@ -18,17 +18,35 @@ $(function () {
     })
 
     //모두체크박스스(내 킬린더에만 추가해줌)
+    // $("#allCheck").change(function () {
+    //     if ($(this).is(":checked")) {
+    //         $("#myCalendarOptions").find('.subCheck').prop("checked", true);
+    //     } else {
+    //         $("#myCalendarOptions").find('.subCheck').prop("checked", false);
+    //     }
+    // });
     $("#allCheck").change(function () {
-        if ($(this).is(":checked")) {
-            $("#myCalendarOptions").find('.subCheck').prop("checked", true);
-        } else {
-            $("#myCalendarOptions").find('.subCheck').prop("checked", false);
-        }
+        const isChecked = $(this).is(":checked");
+
+        // 하위 체크박스 모두 체크/해제
+        $("#myCalendarOptions .subCheck").prop("checked", isChecked);
+
+        // 각 이벤트 요소 직접 표시/숨김 처리
+        document.querySelectorAll('.event1').forEach(el => {
+            el.style.display = isChecked ? 'block' : 'none';
+        });
+        document.querySelectorAll('.event2').forEach(el => {
+            el.style.display = isChecked ? 'block' : 'none';
+        });
+        document.querySelectorAll('.event3').forEach(el => {
+            el.style.display = isChecked ? 'block' : 'none';
+        });
     });
+
 });
 
-$(function(){
-    $('#searchBtn').on('click', function(){
+$(function () {
+    $('#searchBtn').on('click', function () {
         alert('사용자를 찾을 수 없습니다.');
     });
 })
@@ -53,93 +71,79 @@ $(function () {
 });
 
 
-//전체, 생일, 업무, 일정체크박스
-
 window.onload = function () {
-    const allCheckBox = document.querySelector('#allCheck');
+    // 체크박스 관련 요소
     const birthdayBox = document.querySelector('#check1');
     const taskBox = document.querySelector('#check2');
     const scheduleBox = document.querySelector('#check3');
+
+    // 필터링 대상
     const event1 = document.querySelectorAll('.event1');
     const event2 = document.querySelectorAll('.event2');
     const event3 = document.querySelectorAll('.event3');
 
-    //전체
-    allCheckBox.addEventListener('change', function(){
-        event1.forEach(function (el) {
-            if (el.style.display == this.checked) { 
-                el.style.display = 'block';
-            } else {
-                el.style.display = 'none';
-            }
-            event1.forEach(function (el) {
-                el.style.display = birthdayBox.checked ? 'block' : 'none';
-            })
+    // 필터링 함수
+    function toggleEvents(checkbox, eventElements) {
+        eventElements.forEach(function (el) {
+            el.style.display = checkbox.checked ? 'block' : 'none';
         });
-        event2.forEach(function (el) {
-            if (el.style.display == this.checked) {
-                el.style.display = 'block';
-            } else {
-                el.style.display = 'none';
-            }
-            event2.forEach(function (el) {
-                el.style.display = taskBox.checked ? 'block' : 'none';
-            })
-        });
-        event3.forEach(function (el) {
-            if (el.style.display == this.checked) {
-                el.style.display = 'block';
-            } else {
-                el.style.display = 'none';
-            }
-            event3.forEach(function (el) {
-                el.style.display = scheduleBox.checked ? 'block' : 'none';
-            })
-        });
+    }
 
-    })
-    //생일
+    // 체크박스 이벤트 연결
     birthdayBox.addEventListener('change', function () {
-        event1.forEach(function (el) {
-            if (el.style.display == this.checked) { //this : birthdayBox
-                el.style.display = 'block';
-            } else {
-                el.style.display = 'none';
-            }
-            //초기세팅..안하면 계속 적용안됨됨
-            event1.forEach(function (el) {
-                el.style.display = birthdayBox.checked ? 'block' : 'none';
-            })
-        });
-    })
-    //업무
+        toggleEvents(birthdayBox, document.querySelectorAll('.event1'));
+    });
     taskBox.addEventListener('change', function () {
-        event2.forEach(function (el) {
-            if (el.style.display == this.checked) {
-                el.style.display = 'block';
-            } else {
-                el.style.display = 'none';
-            }
-            event2.forEach(function (el) {
-                el.style.display = taskBox.checked ? 'block' : 'none';
-            })
-        });
-    })
-    //일정
+        toggleEvents(taskBox, document.querySelectorAll('.event2'));
+    });
     scheduleBox.addEventListener('change', function () {
-        event3.forEach(function (el) {
-            if (el.style.display == this.checked) {
-                el.style.display = 'block';
-            } else {
-                el.style.display = 'none';
-            }
-            event3.forEach(function (el) {
-                el.style.display = scheduleBox.checked ? 'block' : 'none';
-            })
-        });
-    })
-}
+        toggleEvents(scheduleBox, document.querySelectorAll('.event3'));
+    });
 
+    // 초기 세팅
+    toggleEvents(birthdayBox, event1);
+    toggleEvents(taskBox, event2);
+    toggleEvents(scheduleBox, event3);
+
+    //
+    const input = document.getElementById('scheduleInput');
+    const save = document.getElementById('saveBtn');
+
+    save.addEventListener('click', function () {
+        const value = input.value.trim();
+
+        if (value === '') {
+            alert('내용을 입력해주세요!');
+            return;
+        }
+
+        const newEvent = document.createElement('div');
+        newEvent.className = 'event2'; // 업무 일정으로 가정
+        newEvent.textContent = value;
+
+        // 필터 반영 (체크 안 되어 있으면 추가하자마자 숨김)
+        if (!taskBox.checked) {
+            newEvent.style.display = 'none';
+        }
+
+        // 날짜 "11"에 추가 (예시)
+        const allDays = document.querySelectorAll('.day-number');
+        let targetDay = null;
+
+        allDays.forEach(function (el) {
+            if (el.textContent === '11') {
+                targetDay = el.closest('.day');
+                targetDay.appendChild(newEvent);
+            }
+        });
+
+        input.value = '';
+
+        const modalEl = document.getElementById('exampleModal');
+        const modal = bootstrap.Modal.getInstance(modalEl);
+        modal.hide();
+    });
+};
 
 // Get the Sidebar
 var mySidebar = document.getElementById("mySidebar");
