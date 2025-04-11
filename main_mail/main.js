@@ -38,19 +38,13 @@ closeBtn.addEventListener("click", function () {
   sidebar.classList.remove("show-sidebar");
 });
 
-/*
- // 드롭다운을 강제로 닫기 위한 코드
- document.getElementById("closeDropdown").addEventListener("click", function() {
-  var dropdown = new bootstrap.Dropdown(document.getElementById('dropdownMenuButton'));
-  dropdown.hide(); // 강제로 닫기
-});
+/* sidebar */
 
-// 드롭다운 외부를 클릭하면 닫기
-$(document).click(function (e) {
-  if (!$(e.target).closest('.dropdown').length) {
-    var dropdown = new bootstrap.Dropdown(document.getElementById('dropdownMenuButton'));
-    dropdown.hide(); // 드롭다운 메뉴 강제 닫기
-  }
-});
-
-*/
+/* global bootstrap: false */
+(() => {
+  'use strict'
+  const tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+  tooltipTriggerList.forEach(tooltipTriggerEl => {
+    new bootstrap.Tooltip(tooltipTriggerEl)
+  })
+})()
