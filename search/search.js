@@ -6,8 +6,12 @@ if (query && query.toLowerCase() !== "kosa") {
     query
   )}`;
 } else {
-  // 조건에 맞는 경우에만 body 표시
   document.body.style.display = "block";
+
+  const input = document.getElementById("searchInput");
+  if (input && query) {
+    input.value = query;
+  }
 }
 
 $(function () {
@@ -22,7 +26,7 @@ $(function () {
       }
     }
   });
-  // 입력할 때마다 X 아이콘 표시 여부 갱신
+
   $("#searchInput").on("input", function () {
     const hasText = $(this).val().trim().length > 0;
 
@@ -33,7 +37,6 @@ $(function () {
     }
   });
 
-  // X 아이콘 누르면 검색창 초기화 + 아이콘 숨기기
   $("#clearSearch").on("click", function () {
     $("#searchInput").val("").focus();
     $(this).hide();
